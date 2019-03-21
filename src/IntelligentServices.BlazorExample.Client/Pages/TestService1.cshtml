@@ -1,0 +1,54 @@
+﻿@page "/testservice1"
+@using IntelligentServices.BlazorExample.Shared
+@inject IExampleService ExampleService
+
+<h1>Test 1</h1>
+
+<p>Simple method call</p>
+
+@if (HelloResult == null)
+{
+<p>
+    <input bind="@Name" />
+    <select bind="@Language">
+        <option value=@Language.English>English</option>
+        <option value=@Language.French>French</option>
+        <option value=@Language.German>German</option>
+    </select>
+    <button onclick=@SayHelloClicked>Say Hello</button>
+</p>
+}
+else
+{
+<h1>@HelloResult</h1>
+
+<button onclick=@StartAgainClicked>Start Again</button>
+}
+
+@functions {
+    [Parameter]
+    string HelloResult {get;set;}
+    [Parameter]
+    string Name {get;set;}
+
+    [Parameter]
+    Language Language {get;set;}
+
+    protected override async Task OnInitAsync()
+    {
+    }
+
+
+    async void SayHelloClicked()
+    {
+
+        HelloResult = await ExampleService.SayHello(Name,Language);
+        StateHasChanged();
+
+    }
+    async void StartAgainClicked()
+    {
+
+        HelloResult =null;
+    }
+}

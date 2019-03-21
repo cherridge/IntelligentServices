@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlazorSignalR" Version="0.5.0-blazor-0.9.0-preview3-19154-02" />
+    <PackageReference Include="NetCoreStack.DispatchProxyAsync" Version="2.2.0" />
+    <PackageReference Include="System.Linq.Async" Version="4.0.0-preview.1.build.745" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntelligentServices.Shared\IntelligentServices.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,94 @@
+﻿@page "/testservice2"
+@using IntelligentServices.BlazorExample.Shared
+@using IntelligentServices.Shared
+@using IntelligentServices.Client
+@inject IExampleService ExampleService
+@inject StreamingServiceManager StreamingServiceManager
+
+
+<h1>Test 2</h1>
+
+<p>Streaming data.</p>
+@if (StreamingResult?.State == StreamingResultState.Query
+||
+StreamingResult?.State == StreamingResultState.QueryRead
+)
+{
+
+    <p> <progress></progress> @StreamingResult?.Index Items</p>
+}
+else if (StreamingResult?.State == StreamingResultState.Read)
+{
+
+    <p> <progress value="@StreamingResult?.Index" max="@StreamingResult?.Count"></progress> @StreamingResult?.Index / @StreamingResult?.Count Items</p>
+}
+@if (StreamingResult?.State == StreamingResultState.Query
+||
+StreamingResult?.State == StreamingResultState.QueryRead
+||
+StreamingResult?.State == StreamingResultState.Read)
+{
+    <button onclick=@CancelClicked>Cancel</button>
+}
+@if (StreamingResult == null)
+{
+    <button onclick=@StartClicked>Start</button>
+}
+
+@if (items != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Entry</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <tr>
+                    <td>@item</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@functions {
+
+    List<string> items { get; set; }
+    IntelligentServices.Shared.IStreamingResultContext StreamingResult { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+    }
+
+
+    bool StartEnabled { get; set; } = true;
+    async void StartClicked()
+    {
+        StartEnabled = false;
+        items = new List<string>();
+
+        ;
+
+        // StreamingServiceManager.AsStreaming2(ExampleService, ex => ex.ListWords, "te");
+
+        // StreamingServiceManager.AsStreaming(ExampleService,srv=>srv.ListWords, "te");
+
+        await foreach (var words in StreamingServiceManager.AsStreaming<IExampleService, string>(sv => sv.ListWords("te")))
+        {
+            StreamingResult = words;
+            if (words.Items != null)
+                items.AddRange(words.Items);
+            this.StateHasChanged();
+        }
+        StartEnabled = true;
+        this.StateHasChanged();
+
+    }
+    async void CancelClicked()
+    {
+        await StreamingResult.Cancel();
+        StreamingResult = null;
+    }
+}

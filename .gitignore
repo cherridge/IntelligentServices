@@ -3,3 +3,16 @@
 ################################################################################
 
 /.vs
+/src/.vs/IntelligentServices/v16/Server/sqlite3
+/src/IntelligentServices.BlazorExample.Client/bin/Debug/netstandard2.0
+/src/IntelligentServices.BlazorExample.Client/obj
+/src/IntelligentServices.BlazorExample.Server/bin/Debug/netcoreapp3.0
+/src/IntelligentServices.BlazorExample.Server/obj
+/src/IntelligentServices.BlazorExample.Shared/bin/Debug/netstandard2.0
+/src/IntelligentServices.BlazorExample.Shared/obj
+/src/IntelligentServices.Client/bin/Debug/netstandard2.0
+/src/IntelligentServices.Client/obj
+/src/IntelligentServices.Server/bin/Debug/netcoreapp3.0
+/src/IntelligentServices.Server/obj
+/src/IntelligentServices.Shared/bin/Debug/netstandard2.0
+/src/IntelligentServices.Shared/obj
