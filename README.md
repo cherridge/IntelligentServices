@@ -5,3 +5,7 @@ A concept for dynamically generated, seamless wrappers around MVC json services 
 This is all very new, if anyone sees this and is interested in helping. Please email! 
 
 Thanks!
+
+
+
+Idea 1: A client service is made for you based on a shared interface.
