@@ -7,5 +7,4 @@ This is all very new, if anyone sees this and is interested in helping. Please e
 Thanks!
 
 
-
-Idea 1: A client service is made for you based on a shared interface.
+Head to the wiki for more info.
