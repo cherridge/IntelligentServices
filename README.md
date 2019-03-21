@@ -7,4 +7,5 @@ This is all very new, if anyone sees this and is interested in helping. Please e
 Thanks!
 
 
-Head to the wiki for more info.
+Head to the [**wiki**](https://github.com/cherridge/IntelligentServices/wiki) for more info.
+
