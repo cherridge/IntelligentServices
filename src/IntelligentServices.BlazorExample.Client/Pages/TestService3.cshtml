@@ -1,0 +1,29 @@
+﻿@page "/testservice3"
+@using IntelligentServices.BlazorExample.Shared
+@using IntelligentServices.Shared
+@using IntelligentServices.Client
+@inject IExampleService ExampleService
+@inject SignalRClient SignalRClient
+
+
+<h1>Test 3</h1>
+<p>Conversations</p>
+
+<h3>@ConversationResultS</h3>
+<h3>@ConversationResultDT</h3>
+@functions {
+    [Parameter]
+    string ConversationResultS { get; set; }
+    [Parameter]
+    DateTime ConversationResultDT { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+
+        await SignalRClient.Start();
+        var temp = await ExampleService.Conversation("Test");
+        ConversationResultS = temp.AString;
+        ConversationResultDT = temp.ADate;
+
+    }
+}

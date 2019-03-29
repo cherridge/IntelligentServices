@@ -1,5 +1,9 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored
+@using Blazored.Modal
+@using Blazored.Modal.Services
 
+@addTagHelper *, Blazored.Modal
 <div class="sidebar">
     <NavMenu />
 </div>
@@ -13,3 +17,4 @@
         @Body
     </div>
 </div>
+<BlazoredModal />

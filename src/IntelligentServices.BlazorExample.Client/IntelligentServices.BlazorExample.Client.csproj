@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modal\src\Blazored.Modal\Blazored.Modal.csproj" />
     <ProjectReference Include="..\IntelligentServices.BlazorExample.Shared\IntelligentServices.BlazorExample.Shared.csproj" />
     <ProjectReference Include="..\IntelligentServices.Client\IntelligentServices.Client.csproj" />
   </ItemGroup>

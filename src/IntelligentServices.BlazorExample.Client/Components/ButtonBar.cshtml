@@ -1,0 +1,28 @@
+﻿<div>
+    @if (Buttons != null)
+    {
+        foreach (var button in Buttons)
+        {
+            <button type="button" class="btn @ButtonPositionToCssClass(button.Position)" onclick="@button.Action">@button.Title</button>
+      
+        }
+    }
+</div>
+
+@functions {
+    [Parameter]
+    Button[] Buttons {get;set;}
+
+    string ButtonPositionToCssClass(IntelligentServices.Shared.ButtonPosition bp)
+    {
+        switch (bp)
+        {
+            case IntelligentServices.Shared. ButtonPosition.Primary:
+                return "btn-primary";
+            case IntelligentServices.Shared.ButtonPosition.Secondary:
+                return "btn-secondary";
+            default:
+                return "";
+        }
+    }
+}

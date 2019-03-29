@@ -1,7 +1,61 @@
 ﻿@page "/"
+@using Blazored.Modal
+@using IntelligentServices.Shared
+@using IntelligentServices.Client
+@using Blazored.Modal.Services
+@using IntelligentServices.Shared
+@using Microsoft.AspNetCore.SignalR.Client
+@inject SignalRClient SignalRClient
 
+@inject IDialogService DialogService
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+<p>
+    <button onclick="@DoClick" title="Modal me">Do a modal.</button>
+</p>
+
+
+@functions {
+
+    protected async Task DoClick()
+    {
+
+        var clickedButton = await DialogService.Alert("Test Alert", "bell", "Blah blah ", new ButtonBase[] {
+                new ButtonBase() { Title= "Ok", Position= ButtonPosition.Primary},
+
+                new ButtonBase() { Title= "Cancel", Position= ButtonPosition.Secondary}
+            });
+
+
+
+        // Modal.Show("Test", typeof(Components.Alert));
+        /*
+        var paramsdict = new Dictionary<string, object>()
+            {
+            {"Header",new Components.ModalDialogHeader() { Title="Test", CanClose=true} },
+            {"Buttons",new Components.ModalDialogButton[]
+            {
+                new Components.ModalDialogButton() { Title="Ok", Order= Components.DialogButtonOrder.Primary},
+                new Components.ModalDialogButton() { Title="Cancel", Order= Components.DialogButtonOrder.Secondary, IsDismissAction=true}
+
+            }
+            } };
+
+        await myModalDialog.SetParametersAsync(ParameterCollection.FromDictionary(paramsdict));*/
+    }
+    protected override async Task OnInitAsync()
+    {
+
+        await SignalRClient.Start();
+
+        await SignalRClient.Connection.InvokeAsync<string>("TestCommand", "Chris");
+
+         await SignalRClient.Connection.InvokeAsync("AlertReturn", "test", "");
+    }
+
+
+}
+
