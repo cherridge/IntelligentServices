@@ -5,3 +5,7 @@ A concept for dynamically generated, seamless wrappers around MVC json services 
 This is all very new, if anyone sees this and is interested in helping. Please email! 
 
 Thanks!
+
+
+Head to the [**wiki**](https://github.com/cherridge/IntelligentServices/wiki) for more info.
+
